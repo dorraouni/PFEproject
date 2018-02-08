@@ -1,0 +1,62 @@
+{% extends "default/index.html.twig" %}
+
+    
+{% block body %}
+<div class="inbox">
+        <h2>Nouveau message</h2>
+        
+        {%include 'message/inbox.html.twig' %}
+
+
+  <div class="col-md-8 compose-right">
+        <div class="inbox-details-default">
+            <div class="inbox-details-heading">
+                    Nouveau message 
+            </div>
+            <div class="inbox-details-body">
+                <div class="alert alert-info">
+                        Remplissez les détails pour envoyer un nouveau message
+                </div>
+                
+                <form class="com-mail" action="{{path('message_new')}}"  enctype="multipart/form-data">
+                    {{form_widget(form._token)}}
+                    <div class="row">
+                        <div class="col-xs-12">
+                          <div class="form-group">
+                            <select  name="dest"  id="dest" class="selectpicker form-control" data-live-search="true">
+                                {% for dest in destinataires  if dest.id != user.id %} 
+                                    
+                                    <option value="{{dest.id}}">{{dest.username}}</option>
+                                  
+                                {% endfor %}
+                            </select>
+                          </div>
+                        </div>
+                    </div>
+                   
+                    {{ form_widget(form.objet,{ 'attr': {'class': 'form-group','placeholder':'objet '}}) }}
+                    {{ form_errors(form.objet) }}
+                    
+                     {{form_widget(form.contenu,{ 'attr': {'class': 'form-group','placeholder':'contenu'}}) }}
+                    {{ form_errors(form.contenu) }}
+                            
+{#                    {{ form_javascript(form) }}#}
+
+                    <div class="form-group">
+                        <div class="btn btn-default btn-file">
+                            <i class="fa fa-paperclip"> </i> Joindre des fichiers
+                            <input type="file" name="files[]">
+                        </div>
+                    </div>
+                    <input type="submit" value="Envoyer"> 
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"> </div> 
+
+</div>
+{% endblock %}
+
+

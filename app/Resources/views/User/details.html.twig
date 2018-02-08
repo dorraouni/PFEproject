@@ -1,0 +1,52 @@
+{% extends "default/index.html.twig" %}    
+
+{% block body %}
+    <style>
+         .blockk{
+          
+           color: #3A9D23;
+        }
+        
+    </style>
+    <h1><b>Détails de l'utilisateur</b></h1>
+    <hr />
+    <hr />
+    <table>
+        <tbody>
+            <tr>
+                {#<th class="blockk">Nom</th>#}
+                
+                <td><FONT size="4"> <i aria-hidden="true"> </i><b class="blockk">  Nom : </b> {{ user.nom }}</FONT>
+</td>
+            </tr>
+            
+            <tr>
+                
+{#                <th class="blockk">Prenom</th>
+#}                
+                <td><FONT size="4"> <i aria-hidden="true"> </i><b class="blockk">  Prenom : </b> {{ user.prenom }}</FONT></td>
+            </tr>
+            <tr>
+                
+{#                <th class="blockk">Date de naissance</th>#}
+                
+                <td><FONT size="4"> <i aria-hidden="true"> </i><b class="blockk">  Date de naissance : </b> {% if user.dateNaissance %}{{ user.dateNaissance|date('d-m-Y') }}{% endif %}</FONT></td>
+            </tr>
+            <tr>
+                
+{#                <th class="blockk">Téléphone </th>
+#}                
+                <td><FONT size="4"> <i aria-hidden="true"> </i><b class="blockk">  Téléphone : </b> {{ user.telephone }}</FONT></td>
+            </tr>
+            
+             <tr>
+                
+{#                <th class="blockk">Adresse</th>
+#}                
+                <td><FONT size="4"> <i aria-hidden="true"> </i><b class="blockk">  Adresse : </b> {{ user.adresse }}</FONT></td>
+            </tr>
+        </tbody>
+    </table>
+            <br/>
+    
+{% endblock %}

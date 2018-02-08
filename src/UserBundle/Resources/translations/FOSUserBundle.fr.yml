@@ -1,0 +1,14 @@
+
+registration:
+   
+    email:
+        subject: 'Salut %username% !'
+        message: |
+            Salut %username% !
+
+            Si tu veux valider ton compte clique sur  %confirmationUrl%
+            
+
+            Cordialement,
+            L'équipe d'AutoEcole
+

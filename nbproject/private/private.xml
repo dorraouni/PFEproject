@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/xampp/htdocs/AutoEcole/app/Resources/views/bar/topbar.html.twig</file>
+            <file>file:/C:/xampp/htdocs/AutoEcole/src/GestionBundle/Controller/WSController.php</file>
+            <file>file:/C:/xampp/htdocs/AutoEcole/src/GestionBundle/Form/MessageType.php</file>
+            <file>file:/C:/xampp/htdocs/AutoEcole/app/Resources/views/message/envoie.html.twig</file>
+            <file>file:/C:/xampp/htdocs/AutoEcole/src/GestionBundle/Controller/MessageController.php</file>
+            <file>file:/C:/xampp/htdocs/AutoEcole/src/GestionBundle/Resources/views/Default/index.html.twig</file>
+            <file>file:/C:/xampp/htdocs/AutoEcole/src/GestionBundle/Entity/Facture.php</file>
+            <file>file:/C:/xampp/htdocs/AutoEcole/app/Resources/views/message/new.html.twig</file>
+            <file>file:/C:/xampp/htdocs/AutoEcole/src/UserBundle/Controller/ListUserController.php</file>
+            <file>file:/C:/xampp/htdocs/AutoEcole/src/GestionBundle/Controller/FactureController.php</file>
+            <file>file:/C:/xampp/htdocs/AutoEcole/src/GestionBundle/Entity/Message.php</file>
+        </group>
+    </open-files>
+</project-private>

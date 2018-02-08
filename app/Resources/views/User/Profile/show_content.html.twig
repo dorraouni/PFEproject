@@ -1,0 +1,60 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <style>
+        .login-page {
+                 padding: 0em 0em;
+        }
+        .login-block {
+            padding: 2em 2em;
+{#            padding-right: 650px;
+#}
+        }
+        .username {
+            color: orange;        }
+        .blockk{
+          
+           color: #3A9D23;
+        }
+       
+    </style>
+ {{ render(controller('GestionBundle:Default:topBar')) }}
+
+    <div class="login-page" >
+        
+            <div class="login-head">
+                <h1><B>Mon profil</B></h1>
+            </div>
+          
+            <div class="login-block">
+
+                <h1 class="username"><center><b> {{ user.prenom }} {{ user.nom }} </b> </center></h1>
+                <hr>
+                <center>
+                        <FONT size="4"> <i class="fa fa-user" aria-hidden="true"> </i><b class="blockk">  Nom : </b> {{ user.nom }}</FONT>
+                        <br>
+                        <FONT size="4"> <i class="fa fa-user" aria-hidden="true"> </i><b class="blockk">  Prénom : </b> {{ user.prenom }}</FONT>
+                        <hr>
+
+                        <FONT size="4"><i class="fa fa-envelope" aria-hidden="true"></i><b class="blockk">  E-mail :  </b>  {{ user.email }}</FONT><br>
+                        <hr>
+                        <FONT size="4"><i class="fa fa-home" aria-hidden="true"></i><b class="blockk">  Adresse : </b> {{ user.adresse }}</FONT>  <br>
+                        <hr>
+
+                        <FONT size="4">  &#128222;<b class="blockk"> Tel : </b> {{ user.telephone}}<br/>
+                        <br>
+                        
+                    <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-primary">Modifier le profil</a>
+
+                </center>
+            </div>
+       
+    </div>
+{% include 'bar/leftbar.html.twig' %}  
+
+{% endblock body %}
+
+
+
+

@@ -1,0 +1,130 @@
+{% extends "default/index.html.twig" %}    
+{% block body %}
+    <style>
+        .btn-file{
+            padding: 0;
+            background-color: #0b3f6b;
+            font-size: 9px;
+        }
+        .fileinput-upload,.fileinput-remove{
+            padding: 0;
+            font-size: 9px;
+        }
+    </style>
+        <h1><b>Nouveau cours</b></h1>
+        <hr>
+
+
+<form class="form-horizontal form-label-left"  action="{{path('cours_new')}}"  method="post" enctype="multipart/form-data">
+    {{ form_widget(form._token) }}
+{#            <textarea class="ckeditor" name="texte" ></textarea>#}
+
+        <div class="item form-group bad">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="texte">Titre du cours <span class="required"></span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                {{form_widget(form.titre,{ 'attr': {'class': 'form-control col-md-7 col-xs-12'} }) }}
+                {{form_errors(form.titre) }}
+            </div>
+        </div>
+      
+        <div class="item form-group bad">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="texte">Ajouter Une image <span class="required"></span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input id="input-1" name="input-1" type="file"  class="file-loading" required="true">
+            </div>
+
+            <script>
+                $(document).on('ready', function() {
+                    $("#input-1").fileinput({
+
+                        language : "fr"
+
+                    });
+                });
+            </script>
+        </div>
+
+        <div class="item form-group bad">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="texte">Texte <span class="required"></span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <textarea class="ckeditor" name="texte" ></textarea>
+            </div>
+        </div>
+            
+        <div class="item form-group bad">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="duree">Durée du cours <span class="required"></span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                {{form_widget(form.duree,{ 'attr': {'class': 'form-control col-md-7 col-xs-12'} }) }}
+                {{ form_errors(form.duree) }}
+            </div>
+        </div>
+          
+        <div class="item form-group bad">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date">Date <span class="required"></span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" name="date" required="true" value="23-08-2017" class="form-control col-md-7 col-xs-12" />
+   
+                    <script type="text/javascript">
+                        $(function() {
+                            $('input[name="date"]').daterangepicker({
+                                locale: {
+                                    format : 'DD-MM-YYYY',
+                                },
+                                singleDatePicker: true,
+                                showDropdowns: true
+                             });
+                        });
+                    </script>
+                {#{{form_widget(form.date,{ 'attr': {'class': 'form-control col-md-7 col-xs-12'} }) }}
+                {{ form_errors(form.date) }}#}
+                
+            </div>
+        </div>
+           
+        <div class="item form-group bad">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="texte">Ajouter des fichiers<span class="required"></span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input id="input-6" name="input-6[]" type="file" multiple class="file-loading">
+            </div>
+            
+                <script>
+                $(document).on('ready', function() {
+                    $("#input-6").fileinput({
+                        showUpload: false,
+                        maxFileCount: 10,
+                        language : "fr"
+
+                    });
+                });
+                </script>
+        </div>
+        {#<div class="item form-group bad">
+            <div class="col-md-6 col-sm-6 col-xs-12" style="margin-left: ">
+            <input id="input-id" type="file" class="file" data-preview-file-type="text">
+
+        <script>        
+            $("#input-id").fileinput({'showUpload':false, 'previewFileType':'any'});
+        </script>
+            </div>
+        </div>#}
+            
+        <div class="form-group">
+            <div class="col-md-6 col-md-offset-3">
+                <button  type="submit"  class="btn btn-success">Valider</button>
+            </div>
+        </div>
+</form>
+                       
+    <ul>
+      
+        <center> <a href="{{ path('cours_index') }}"><button type="submit" class="btn btn-success">Retourner à la liste des cours</button></a></center>
+      
+    </ul>
+        
+{% endblock %}

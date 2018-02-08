@@ -1,0 +1,53 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block fos_user_content %}
+   
+    
+    <div class="login-page">
+    <div class="login-main">  	
+    	 <div class="login-head">
+				<h1>Login</h1>
+			</div>
+         
+			<div class="login-block">
+				<form action="{{ path("fos_user_security_check") }}"	>
+				</form>
+				<h5><a href="index.html">Go Back to Home</a></h5>
+			</div>
+      </div>
+</div>
+                                <label for="username">{{ 'username'|trans }}</label>
+    <input type="text" name="username" placeholder="Username" id="username" name="_username" value="{{ last_username }}" required="required">
+                                <label for="password">{{ 'password'|trans }}</label>
+
+					<input type="password" name="password" class="lock" placeholder="Password" id="password" name="_password" required="required">
+					<div class="forgot-top-grids">
+						<div class="forgot-grid">
+							<ul>
+								<li>
+                                                                        <label for="remember_me">
+									<input type="checkbox" id="remember_me" name="_remember_me" value="on">
+									<span></span>{{ 'remember_me'|trans }}</label>
+								</li>
+							</ul>
+						</div>
+						<div class="forgot">
+							<a href="#">Forgot password?</a>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+                                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+					<input type="submit" id="_submit" name="_submit" value="{{ 'submit'|trans }}">	
+					<h3>Not a member?<a href="signup.html"> Sign up now</a></h3>				
+					<h2>or login with</h2>
+					<div class="login-icons">
+						<ul>
+							<li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#" class="google"><i class="fa fa-google-plus"></i></a></li>						
+						</ul>
+					</div>
+   
+     
+{% endblock fos_user_content %}

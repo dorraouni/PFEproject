@@ -1,0 +1,189 @@
+{% extends "default/index.html.twig" %}
+
+{%block body %}
+<div class="inbox">
+    <h2>Messages reçus</h2>
+    
+      {%include 'message/inbox.html.twig' %}
+        <div class="col-md-8 mailbox-content  tab-content tab-content-in">
+ 
+            <div class="tab-pane text-style active" id="tab1">
+                <div class="mailbox-border">
+                    <div class="mail-toolbar clearfix">
+                        <div class="float-left">
+                            <div class="btn btn_1 btn-default mrg5R">
+                               <i class="fa fa-refresh"> </i>
+                            </div>
+                            
+                        <div class="clearfix"> </div>
+                        </div>
+                          
+                    </div>
+                    <table class="table tab-border">
+                        <thead>
+                            <tr class="unread checked">
+                                <th> </th>
+                                <th> </th>
+                                <th>Expéditeur</th>
+                                <th>Objet</th>
+                                <th>Date</th>
+                                <th>Heure</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="unread checked">      
+                       
+                            {% if messages is not empty %}
+
+                                {% for message in messages %}
+                                    
+                                   
+                                    <tr>
+                                        <td class="hidden-xs">
+                                            <input type="checkbox" class="checkbox">
+                                        </td>
+                                        <td class="hidden-xs">
+                                            <i class="fa fa-star icon-state-warning"></i>
+                                        </td>
+{#                                        <td><a href="{{ path('message_show', { 'id': message.id }) }}">{{ message.id }}</a></td>#}
+                                  {#  {% for dest in destinataires if dest.id == user.id%}#}
+                                        
+                                        <td>{{ message.exp }}</td>
+                                    
+{#                                        <td class="hidden-xs">{{ message.statut }}</td>
+#}                                      <td>{{ message.objet }}</td>
+                                        <td>{{ message.date|date('d/m/Y')}}</td>
+                                        <td>{{ message.date|date('H:i:s')}}</td>
+{#                                    {%endfor%}#}
+                                        <td>
+                                            <ul>
+                                                    <a href="{{ path('message_show', { 'id': message.id }) }}"> <button type="submit" class="btn btn-success">Voir</button></a>
+
+{#                                                    <a href="{{ path('message_show', { 'id': message.id }) }}">Voir</a>#}
+                                            </ul>
+                                            
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {%else%}
+                                <tr>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+
+                                    <td>
+                                        <center>
+                                        <h2>Aucun Message</h2>
+                                        </center>
+
+                                    </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                             </tr>
+                        {%endif%}
+                        </tbody>
+                    </table>
+                </div>   
+            </div>
+            <div class="tab-pane text-style" id="tab2">
+                <div class="mailbox-border">
+                    <div class="mail-toolbar clearfix">
+                        <div class="float-left">
+                            <div class="btn btn_1 btn-default mrg5R">
+                              <i class="fa fa-refresh"> </i>
+                            </div>
+                            <div class="dropdown dropdown-inbox">
+                               <a href="#" title="" class="btn btn-default" data-toggle="dropdown" aria-expanded="false">
+                                   <i class="fa fa-cog icon_8"></i>
+                                   <i class="fa fa-chevron-down icon_8"></i>
+                                <div class="ripple-wrapper"></div></a>
+                                <ul class="dropdown-menu float-right">
+                                    <li>
+                                        <a href="#" title="">
+                                           <i class="fa fa-pencil-square-o icon_9"> </i>
+                                           Edit
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="">
+                                           <i class="fa fa-calendar icon_9"> </i>
+                                           Schedule
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="">
+                                            <i class="fa fa-download icon_9"> </i>
+                                            Download
+                                        </a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#" class="font-red" title="">
+                                            <i class="fa fa-times" icon_9=""> </i>
+                                            Delete
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                           <div class="clearfix"> </div>
+                        </div>
+                         
+                    </div>
+                </div>   
+            </div>
+                <div class="tab-pane text-style" id="tab3">
+                    <div class="mailbox-border">
+                        <div class="mail-toolbar clearfix">
+                            <div class="float-left">
+                                <div class="btn btn_1 btn-default mrg5R">
+                                    <i class="fa fa-refresh"> </i>
+                                </div>
+                                <div class="dropdown dropdown-inbox">
+                                    <a href="#" title="" class="btn btn-default" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-cog icon_8"></i>
+                                        <i class="fa fa-chevron-down icon_8"></i>
+                                    <div class="ripple-wrapper"></div></a>
+                                    <ul class="dropdown-menu float-right">
+                                        <li>
+                                            <a href="#" title="">
+                                                <i class="fa fa-pencil-square-o icon_9"> </i>
+                                                Edit
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="">
+                                                <i class="fa fa-calendar icon_9"> </i>
+                                                Schedule
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="">
+                                                <i class="fa fa-download icon_9"> </i>
+                                                Download
+                                            </a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="#" class="font-red" title="">
+                                                <i class="fa fa-times" icon_9=""> </i>
+                                                Delete
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+				        <div class="clearfix"> </div>
+                            </div>
+				   
+                        </div>
+	              
+                    </div>   
+                </div>
+               
+        </div>
+        <div class="clearfix"> </div>     
+</div>
+{%endblock%}
+
+

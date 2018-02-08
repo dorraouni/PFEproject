@@ -1,0 +1,77 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<style>
+    .bien{
+        padding-top: 20px;
+        color : #FC8213;
+    }
+</style>
+<div class="login-page">
+    <div class="login-main">  	
+        <div class="login-head">
+            <h1><B>Connexion</B></h1>
+        </div>
+        {#<h2 class="bien"><center> Bienvenue </center></h2>#}
+        {% if error %}
+            <div style="padding-left: 12em; padding-top: 1em; padding-bottom: 0em;color:red; text-transform: uppercase;" >
+                {{ error.messageKey|trans(error.messageData, 'security') }} 
+            </div>
+        {% endif %}
+        <div class="login-block">
+            <form action="{{ path("fos_user_security_check") }}" method="post">
+                    {% if csrf_token %}
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                    {% endif %}
+
+{#                                        {{ form_widget(form.errors) }}
+#}
+                    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="Nom d'utilisateur ou Email" >
+                    <input type="password" id="password" name="_password" required="required"  class="lock" placeholder="Mot de passe">
+                    <div class="forgot-top-grids">
+                        <div class="forgot-grid">
+                            <ul>
+                                <li>
+                                    <input  name="_remember_me" value="on" id="brand1" type="checkbox">
+                                    <label for="brand1"><span></span>Se souvenir de moi</label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="forgot">
+                            <a href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié?</a>
+
+
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <input type="submit" id="_submit" name="_submit"  value="Connexion">	
+                    
+            </form>
+                            <br>
+                    <center>
+                            <p>Vous n'avez pas encore un compte?</p>
+                            <a href="{{ path('fos_user_registration_register') }}">Inscrivez-vous</a>
+                    </center>
+
+
+        </div>
+      </div>
+</div>
+                                
+{#   
+<form action="{{ path("fos_user_security_check") }}" method="post">
+    {% if csrf_token %}
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    {% endif %}
+
+    <label for="username">{{ 'security.login.username'|trans }}</label>
+    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+
+    <label for="password">{{ 'security.login.password'|trans }}</label>
+    <input type="password" id="password" name="_password" required="required" />
+
+    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+
+    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+</form>#}
+
+     

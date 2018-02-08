@@ -1,0 +1,41 @@
+{% extends "default/index.html.twig" %}    
+
+{% block body %}
+<div class="cols-grids panel-widget">      
+<div class="content-wrapper" >
+    
+        <h1><b>Liste des cours</b></h1>
+        <hr />
+        <hr />
+   
+    <table>
+        {#<thead>
+            <tr>
+                <th>Id</th>
+                <th>Texte</th>
+                <th>Date</th>
+                <th>Duree</th>
+                <th>Actions</th>
+            </tr>
+        </thead>#}
+        <tbody>
+        {% for cours in cours %}
+            <tr>
+                <td><b>{{ cours.titre }}</b></td>
+                
+                <td>
+                    <ul>
+                        
+                    <a href="{{ path('cours_show', { 'id': cours.id }) }}"> <button type="submit" class="btn btn-success">détails</button></a>
+                        
+{#                            <a href="{{ path('cours_edit', { 'id': cours.id }) }}">edit</a>#}
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        
+</div>
+</div>
+{% endblock %}

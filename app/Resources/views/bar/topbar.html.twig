@@ -1,0 +1,256 @@
+
+<!--header start here-->
+<style>
+    .notification_desc {
+        margin-left: 80px;
+{#        padding-top: 20px;
+#}    }
+   
+</style>
+<div class="header-main">
+    <div class="header-left">
+       
+    <div >
+        <a href="{{path('gestion_homepage')}}"><img src="{{ asset('bundles/gestion/images/autoPass.png')}}" alt="" width="263px"></a>
+    </div>
+        {#<div class="search-box">
+            <form>
+                <input type="text" placeholder="Chercher..." required="">	
+                <input type="submit" value="">					
+            </form>
+        </div>#}
+        <div class="clearfix"> </div>
+    </div>
+       
+    <div class="header-right">
+        <div class="profile_details_left"><!--notifications of menu start -->
+            <ul class="nofitications-dropdown">
+                <li class="dropdown head-dpdn">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa  fa-envelope"></i><span class="badge">{{messages|length}}</span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="notification_header">
+                                    <h3>Vous avez  {{messages|length}} nouveaux messages</h3>
+                                </div>
+                            </li>
+                            
+                                <li class="odd">
+                                
+                                    {% for message in messages|slice(0, 3)  %}
+                                        {% set variable = message.exp.photo%}
+                                            <span class="prfil-img">
+                                        <img class="image-profile" src="{{asset('uploads/avatar/'~variable)}}"></span>
+{#                                        <div class="user_img"><img src="{{ asset('bundles/gestion/images/p2.png')}}" alt=""></div>#}
+                                            <div class="notification_desc">
+                                                <p> {{ message.exp}}</p>
+                                                <p><span>{{ message.objet}}</span></p>
+                                            </div>
+                                            <div class="clearfix"></div>	
+                                    {%endfor%}
+                                 
+                                 </li>
+                            
+                            <li>
+                                <div class="notification_bottom">
+                                    <a href="{{path('message_index')}}">Voir les messages reçues</a>
+                                </div> 
+                            </li>
+                        </ul>
+                </li>
+                <li class="dropdown head-dpdn">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-tasks"></i><span class="badge blue">{{plannings|length}}</span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="notification_header">
+                                    <h3>Vous avez {{plannings|length}} nouveaux plannings</h3>
+                                </div>
+                            </li> 
+                            {% for plan in plannings if user==plan.userDest  %}
+                             
+                                <li>
+
+                                    <a class="btn btn-xs btn-flat" data-toggle="modal" data-id="{{plan.id}}" data-titre="{{plan.titre}}" data-user="{{plan.user}}"   data-target="#ModalNotif" type="button" title="Plus">
+                                    <div class="user_img"><img src="{{ asset('bundles/gestion/images/check.png')}}" alt=""></div>
+
+
+                                    <div class="notification_desc">
+                                        <p><b>{{ plan.titre}}</b></p>
+{#                                        <p id="idplan" > {{ plan.id}}</p>#}
+
+                                    </div>
+                                    <div class="clearfix"></div>	
+                                    </a>
+                                </li>
+                                
+                            {%endfor%}
+                            
+                            <li>
+                                <div class="notification_bottom">
+                                    <a href="{{path('planning_new')}}">Voir tous les plannings</a>
+                                </div> 
+                            </li>
+                        </ul>
+                </li>	
+                	
+            </ul>
+            <div class="clearfix"> </div>
+        </div>
+        <!--notification menu end -->
+        <div class="profile_details">		
+            <ul>
+                <li class="dropdown profile_details_drop">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        
+                        <div class="profile_img">	
+                            {% set variable = user.photo%}
+                            <span class="prfil-img">
+                                <img class="image-profile" src="{{asset('uploads/avatar/'~variable)}}"></span>
+{#                            <span class="prfil-img"><img src="{{ asset('bundles/gestion/images/p7.png')}}" alt=""> </span> 
+#}                            <div class="user-name">
+                                <p> {{user.username}} </p>
+                                
+                                {% if is_granted('ROLE_ADMIN') %}
+                                <span style="font-weight:bold"> Administrateur </span>
+                                {% elseif is_granted('ROLE_CANDIDAT') %}
+                                <span style="font-weight:bold"> Candidat </span>
+                                {% elseif is_granted('ROLE_MONITEUR') %}
+                                <span style="font-weight:bold"> Moniteur </span>
+ 
+                                {% endif %}
+                                
+
+                            </div>
+                            <i class="fa fa-angle-down lnr"></i>
+                            <i class="fa fa-angle-up lnr"></i>
+                            <div class="clearfix"></div>	
+                        </div>	
+                    </a>
+                    <ul class="dropdown-menu drp-mnu">
+                        <li> <a href={{path('fos_user_profile_show')}}><i class="fa fa-user"></i> Profil</a> </li>
+                        <li> <a href={{path('fos_user_change_password')}}><i class="fa fa-cog"></i> changer mot de passe</a> </li> 
+                        <li> <a href="{{path('fos_user_security_logout')}}"><i class="fa fa-sign-out"></i> Déconnexion </a> </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="clearfix"> </div>				
+    </div>
+    <div class="clearfix"> </div>
+    
+    
+</div>
+<div id="ModalNotif" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h4 class="modal-title" id="myModalLabel2">Accepter/refuser planning</h4>
+            </div>
+            <div class="modal-body">
+
+{#                <span id="showid"></span>#}
+                </br>
+                <center><h4>Vous avez un nouveau planning proposé par : <span id="user"></span></h4>
+                <h5>Vous pouvez l'accepter ou le refuser </h5></center>
+{#                <span id="startDate"></span>
+#}                
+            </div>
+            <div class="modal-footer">
+                {#<a class="btn btn-danger" id="ref"  > refuser</a>
+                <a class="btn btn-success" id="acc" > Accepter</a>#}
+                <input type="button" class="btn btn-default antoclose2" data-dismiss="modal" id="refuser" value="Refuser">
+                <input type="button" class="btn btn-primary antosubmit2" data-dismiss="modal" id="accepter" value="Accepter">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+
+        $('#ModalNotif').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var id= button.data('id');
+            var titre = button.data('titre');
+            var user = button.data('user');
+
+            console.log(id);
+            var modal = $(this);
+            modal.find('.modal-title').text(titre);
+            modal.find('.modal-body #showid').html(id);
+            modal.find('.modal-body #user').html(user);
+            modal.find('.modal-footer #refuser').attr('onclick',"refuser("+id+")");
+            modal.find('.modal-footer #accepter').attr('onclick',"accepter("+id+")");
+      
+        });
+        
+        
+    });
+        function refuser(data){
+            console.log(data)
+            var path = "{{ path('planning_refuse',{'id':'id'}) }}";
+            path = path.replace('id',data);
+            $.ajax({
+                url: path,
+                type : 'POST',
+                cache: false,
+                xhr: function() {  // Custom XMLHttpRequest
+                    var myXhr = $.ajaxSettings.xhr();
+                    if(myXhr.upload){ // Check if upload property exists
+                        myXhr.upload.addEventListener('progress',progressHandlingFunction, false); // For handling the progress of the upload
+                    }
+                    return myXhr;
+                },
+                success: function(success){
+                    console.log(success);
+                },
+                error:function (error)
+                {
+                    console.log(error);
+                }
+                });
+       }
+      
+      
+      function accepter(data){
+            console.log(data)
+            var path = "{{ path('planning_accept',{'id':'id'}) }}";
+            path = path.replace('id',data);
+            $.ajax({
+                url: path,
+                type : 'POST',
+                cache: false,
+                xhr: function() {  // Custom XMLHttpRequest
+                    var myXhr = $.ajaxSettings.xhr();
+                    if(myXhr.upload){ // Check if upload property exists
+                        myXhr.upload.addEventListener('progress',progressHandlingFunction, false); // For handling the progress of the upload
+                    }
+                    return myXhr;
+                },
+                success: function(success){
+                    console.log(success);
+                },
+                error:function (error)
+                {
+                    console.log(error);
+                }
+                });
+       }
+      
+       {# function accepter(data){
+           console.log(data)
+       }#}
+           
+        function progressHandlingFunction(e){
+            if(e.lengthComputable){
+                $('progress').attr({value:e.loaded,max:e.total});
+            }
+        }
+</script>
+<!--header end here-->
+                <style>
+                    .image-profile {
+                    border-radius: 50%;
+                    margin-right: 10px;
+                    }
+                </style>

@@ -1,0 +1,14 @@
+gestion_homepage:
+    path:     /
+    defaults: { _controller: GestionBundle:Default:index }
+
+
+inbox:
+    path:   /inbox
+    defaults:   { _controller: GestionBundle:Message:inbox } 
+    
+
+    
+  
+    
+     

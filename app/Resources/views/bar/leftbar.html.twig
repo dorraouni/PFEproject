@@ -1,0 +1,67 @@
+
+<div class="sidebar-menu">
+    <div class="logo"> <a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a> <a href="#"> <span id="logo" ></a></span> 
+			      <!--<img id="logo" src="" alt="Logo"/>--> 
+    </div>		  
+    <div class="menu">
+        <ul id="menu" >
+            <li id="menu-home" ><a href="{{path('gestion_homepage')}}"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
+            
+            {% if is_granted('ROLE_ADMIN') %}
+                
+                <li><a href="#"><i class="fa fa-cogs"></i><span>Gérer les utilisateurs</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                  <ul>
+                    <li><a href="{{path('fos_user_registration_register')}}">Ajouter moniteur</a></li>
+                    <li><a href="{{path('user_list')}}">Liste des utilisateurs</a></li>		            
+                  </ul>
+                </li>
+            
+            {% endif %}
+            
+            <li><a href="#"><i class="fa fa-envelope"></i><span>Messages</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                <ul id="menu-academico-sub" >
+                   <li id="menu-academico-avaliacoes" ><a href="{{ path('message_index')}}">Messages reçus</a></li>
+                   <li id="menu-academico-boletim" ><a href="{{ path('message_envoie')}}">Messages envoyés</a></li>
+                   <li id="menu-academico-boletim" ><a href="{{path('message_new')}}">Composer un message </a></li>
+                </ul>
+            </li>
+            
+            <li id="menu-comunicacao" ><a href="{{path('planning_new')}}"><i class="fa fa-book nav_icon"></i><span>Plannings</span><span style="float: right"></span></a>
+             {# <ul id="menu-comunicacao-sub" >
+               
+                <li id="menu-arquivos" ><a href="{{path('planning_new')}}">Ajouter Planning</a></li>
+                <li id="menu-arquivos" ><a href="typography.html">Listes des plannings</a></li>
+                
+              </ul>#}
+            </li>
+            {% if is_granted('ROLE_ADMIN') %}
+
+             <li id="menu-academico" ><a href="#"><i class="fa fa-file-text"></i><span>Cours</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                <ul id="menu-academico-sub" >
+                  <li id="menu-academico-boletim" ><a href="{{path('cours_new')}}">Ajouter un nouveau cours</a></li>
+                  <li id="menu-academico-avaliacoes" ><a href="{{path('cours_index')}}">Liste des cours </a></li>		           
+                </ul>
+            </li>
+            {%else%}
+            <li id="menu-academico" ><a href="{{path('cours_index')}}"><i class="fa fa-file-text"></i><span>Cours</span><span  style="float: right"></span></a>
+            </li>
+            {%endif%}
+            <li><a href="{{path('facture_index')}}"><i class="fa fa-bar-chart"></i><span>Factures</span></a></li>
+           
+            
+            <li><a href="#"><i class="fa fa-cog"></i><span>paramétres</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                <ul id="menu-academico-sub" >
+                    <li id="menu-academico-avaliacoes" ><a href="{{path('fos_user_change_password')}}">Changer mot de passe</a></li>
+                    <li id="menu-academico-boletim" ><a href="{{path('fos_user_security_logout')}}">Déconnexion</a></li>
+                </ul>
+            </li>
+          
+        </ul>
+    </div>
+    
+</div>
+<style>
+    .menu {
+    padding: 7.2em 0em 0em 0em;
+}
+</style>

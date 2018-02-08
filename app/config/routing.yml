@@ -1,0 +1,59 @@
+gestion_facture:
+    resource: "@GestionBundle/Controller/FactureController.php"
+    type:     annotation
+
+gestion_ws:
+    resource: "@GestionBundle/Controller/WSController.php"
+    type:     annotation
+
+gestion_cours:
+    resource: "@GestionBundle/Controller/CoursController.php"
+    type:     annotation
+
+gestion_planning:
+    resource: "@GestionBundle/Controller/PlanningController.php"
+    type:     annotation
+
+gestion_message:
+    resource: "@GestionBundle/Controller/MessageController.php"
+    type:     annotation
+
+user:
+    resource: "@UserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+gestion:
+    resource: "@GestionBundle/Resources/config/routing.yml"
+    prefix:   /
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+    
+#fos_user_resetting:
+#    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+#    prefix: /resetting
+   
+fos_user_resetting_request:
+    path:   /request
+    defaults:   { _controller: UserBundle:Resetting:request } 
+    
+    
+fos_user_resetting_send_email:
+    path:   /send-email
+    defaults:   { _controller: UserBundle:Resetting:sendEmail }
+    
+fos_user_resetting_check_email:
+    path:   /check-email
+    defaults:   { _controller: UserBundle:Resetting:checkEmail }
+    
+fos_user_resetting_reset:
+    path:   /reset/{token}
+    defaults:   { _controller: UserBundle:Resetting:reset }
+    
+
+
+    
+
+    
+    

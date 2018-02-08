@@ -1,0 +1,102 @@
+{% extends 'default/index.html.twig' %}
+
+{% block body %}
+    <section class="content">
+      
+    <div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                
+                <h3 class="box-title"><h1>Liste des factures</h1></h3>
+                <hr>
+            </div>
+            <div class="box-body table-responsive no-padding">
+                
+              
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Date facture</th>
+                    <th></th>
+                    <th>Reference</th>
+                    <th>Client</th>
+                    <th>Téléphone</th>
+                    <th>Montant</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for facture in factures %}
+                <tr>
+                    <td>{% if facture.date %}{{ facture.date|date('d-m-Y')}}{% endif %}</td>
+                    <td> </td>
+                    <td>{{ facture.reference }}</td>
+                    <td>{{ facture.client.username }}</td>
+                    <td>{{ facture.client.telephone }}</td>
+                    <td>{{ facture.montant }} dt</td>
+                    <td>
+                        <a target="_blank" href={{asset('factures/'~facture.client.id~'/facture.pdf')}}> <button type="submit" class="btn btn-primary">Voir Facture</button></a>
+                    </td>
+                    {#<td>
+                        <ul>
+                            <li>
+                                <a target="_blank" href={{asset('factures/'~'now'|date('d-m-Y')~'/'~facture.client.id~'/facture.pdf')}}>Voir</a>
+                            </li>
+                        </ul>
+                    </td>#}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+                 
+                <center>
+                <div class="navigation">
+                    {{ knp_pagination_render(factures) }}
+                </div>
+                </center>
+                <br/>
+            
+            
+               
+                  
+          
+            </div>
+                 </div>
+    </div>
+    </div>
+</section>
+
+    {#<table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+
+                <th>Numclient</th>
+                <th>Montant</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for facture in factures %}
+            <tr>
+                <td>{% if facture.date %}{{ facture.date|date('d-m-Y')}}{% endif %}</td>
+
+                <td> </td>
+                <td>{{ facture.client.username }}</td>
+                <td>{{ facture.montant }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a target="_blank" href={{asset('factures/'~'now'|date('d-m-Y')~'/'~facture.client.id~'/facture.pdf')}}>Voir</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+#}
+    
+{% endblock %}

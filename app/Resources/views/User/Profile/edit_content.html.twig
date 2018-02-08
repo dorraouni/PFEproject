@@ -1,0 +1,41 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+    <style>
+        .login-page {
+                padding: 0em 0em;
+                padding-left: 0px;        }
+        .login-block {
+            padding: 2em 2em;
+      }
+       {# .login-head {
+            min-width: 1366px;
+        }#}
+    </style>
+ {{ render(controller('GestionBundle:Default:topBar')) }}
+
+    <div class="login-page">
+        <div class="login-main"> 
+            <div class="login-head">
+                <h1><B>Modifier mon profil</B></h1>
+              
+            </div>
+         
+            <div class="login-block">
+      
+                {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+                    {{ form_widget(form) }}
+                    <div>
+                        <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+                    </div>
+                {{ form_end(form) }}
+
+            </div>
+         </div>
+    </div>
+{% include 'bar/leftbar.html.twig' %}  
+
+{% endblock body %}
+

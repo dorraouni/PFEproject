@@ -1,0 +1,428 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>AutoEcole Website | Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<link href="{{ asset('bundles/gestion/css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all">
+<!-- Custom Theme files -->
+<link href="{{ asset('bundles/gestion/css/style.css')}}" rel="stylesheet" type="text/css" media="all"/>
+<!--js-->
+<script src="{{ asset('bundles/gestion/js/jquery-2.1.1.min.js')}}"></script> 
+<!--icons-css-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--Google Fonts-->
+<link href='//fonts.googleapis.com/css?family=Carrois+Gothic' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Work+Sans:400,500,600' rel='stylesheet' type='text/css'>
+<!--static chart-->
+<script src="{{ asset('bundles/gestion/js/Chart.min.js')}}"></script>
+<!--//charts-->
+<!-- geo chart -->
+    <script src="{{ asset('bundles/gestion/js/modernizr.min.js')}}" type="text/javascript"></script>
+{#    <script>window.modernizr || document.write('<script src="lib/modernizr/modernizr-custom.js"><\/script>')</script>#}
+    <!--<script src="lib/html5shiv/html5shiv.js"></script>-->
+     <!-- Chartinator  -->
+    <script src="{{ asset('bundles/gestion/js/chartinator.js')}}" ></script>
+    
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="{{ asset('bundles/gestion/css/style.css')}}">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+ 
+    
+    <!-- Include Required Prerequisites -->
+        <script type="text/javascript" src="{{asset ('bundles/gestion/plugin/moment.min.js')}}"></script>
+{#        <link rel="stylesheet" type="text/css" href="{{asset ('bundles/gestion/css/bootstrap.css')}}" />#}
+
+    <!-- Include Date Range Picker -->
+        <script type="text/javascript" src="{{asset ('bundles/gestion/plugin/daterangepicker.js')}}"></script>
+        <link rel="stylesheet" type="text/css" href="{{asset ('bundles/gestion/plugin/daterangepicker.css')}}" />
+
+
+<!--skycons-icons-->
+<script src="{{ asset('bundles/gestion/js/skycons.js')}}"></script>
+<!--//skycons-icons-->
+{#<link rel="stylesheet" href="{{asset('bundles/timepicker/jquery.timepicker.min.css')}}">#}
+
+</head>
+{#<script src="{{asset('bundles/timepicker/jquery.timepicker.min.js')}}"></script>#}
+
+<body>	
+<div class="page-container" style="min-height: 850px;">	
+    <div class="left-content">
+        <div class="mother-grid-inner">
+               
+        <!--header start here-->
+        
+        {{ render(controller('GestionBundle:Default:topBar')) }}
+
+        <!--header end here-->
+        <!-- script-for sticky-nav -->
+            <script>
+            $(document).ready(function() {
+                     var navoffeset=$(".header-main").offset().top;
+                     $(window).scroll(function(){
+                            var scrollpos=$(window).scrollTop(); 
+                            if(scrollpos >=navoffeset){
+                                    $(".header-main").addClass("fixed");
+                            }else
+                            {
+                                    $(".header-main").removeClass("fixed");
+                            }   
+                     });
+
+            });
+            </script>
+        <!-- /script-for sticky-nav -->
+    <!--inner block start here-->
+    <div class="inner-block">
+    <!--market updates updates-->
+    
+        
+{% block body %}
+ 
+
+    <link rel='stylesheet' href="{{ asset('bundles/gentellela/fullcalendar/dist/fullcalendar.css')}}" />
+    <script src="{{ asset('bundles/gentellela/jquery/dist/jquery.min.js')}}"></script>
+    <script src="{{ asset('bundles/gentellela/fullcalendar/dist/fullcalendar.js')}}"></script>
+   {# <script src="{{ asset('bundles/plugin/daterangepicker.js')}}"></script>
+    <script src="{{ asset('bundles/plugin/daterangepicker.css')}}"></script>
+    <script src="{{ asset('bundles/plugin/daterangepicker.scss')}}"></script>#}
+   
+    <script>
+        $(document).ready(function() {
+
+           $('#calendar').fullCalendar({
+               
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaDay'
+            },
+          
+            allDaySlot: false, 
+            {%if is_granted ('ROLE_ADMIN')%} 
+                selectable: false,
+            {%else%}
+                selectable: true,
+            {%endif%}
+            selectHelper: true,
+            monthNames: ['Janvier','Fevrier','Mars','Avril','Mai','Juin','Juillet','Aout','Septembre','Octobre','Novembre','Decembre'],
+            monthNamesShort: ['Jan','Fev','Mar','Avr','Mai','Juin','Juil','Aou','Sep','Oct','Nov','Dec'],
+            dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
+            dayNamesShort: ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'],
+            planning: '/planning.json',
+            
+            select: function(start, end)
+            {
+                $('#fc_create').click();
+                $('#startDate').val();
+                $('#endDate').val();
+                start=moment(start).format('DD-MM-YYYY HH:mm:ss');
+                console.log(start);
+                end=moment(end).format('DD-MM-YYYY HH:mm:ss');
+                console.log(end);
+                $('#startDate').val(start);
+                $('#endDate').val(end);        
+        
+            {#if (title) {
+                calendar.fullCalendar('renderEvent',
+                {
+                    title: title,
+                    start: start,
+                    end: end,
+                    allDay: allDay
+                },
+                true // make the event "stick"
+                );
+                }#}
+               
+                $('#calendar').fullCalendar('unselect');
+            },
+            events: [
+
+                {% for plan in plannings %}
+                {
+                    title: '{{ plan.titre}}',
+                    start: '{{ plan.startDate | date('Y-m-d H:i:s') }}',
+                    end: '{{ plan.endDate | date('Y-m-d H:i:s') }}',
+                    textColor: 'black',
+                    {% if plan.user.id == user.id %}
+                       color: '#3A9D23',
+                    {%else%}
+                        color: '#357AB7',
+                    {% endif %}
+                        // #DFAF2C  //jaune
+                }{% if not loop.last %},{% endif %}
+                {% endfor %}
+                ],
+    
+            editable: true,
+            droppable: true,
+            eventLimit: true,
+    });
+    });
+    </script>
+    
+    <!-- Bootstrap -->
+    <link href="{{ asset('bundles/gentellela/dist/css/bootstrap.min.css')}}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="{{ asset('bundles/gentellela/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="{{ asset('bundles/gentellela/nprogress/nprogress.css')}}" rel="stylesheet">
+    <!-- FullCalendar -->
+    <link href="{{ asset('bundles/gentellela/fullcalendar/dist/fullcalendar.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('bundles/gentellela/fullcalendar/dist/fullcalendar.print.css')}}" rel="stylesheet" media="print">
+
+    <!-- Custom styling plus plugins -->
+    <link href="{{ asset('bundles/gentellela/build/css/custom.min.css')}}" rel="stylesheet">
+
+    
+<div class="container body">
+<div class="main_container">
+<!-- page content -->
+    <div class="right_col" role="main" style="margin-left: 0">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Calendrier  <small>Cliquez pour ajouter/éditer des événements</small></h3>
+                </div>   
+            </div>
+            
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Plannings</h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                           {# {% for plan in plannings %}
+                                {{dump(plan.startdate|date('Y-m-d'))}}
+                            {%endfor%}#}
+                            <div id='calendar'></div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /page content -->       
+</div>
+</div>
+<!-- calendar modal -->
+<div id="CalenderModalNew" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h4 class="modal-title" id="myModalLabel">Nouveau planning</h4>
+            </div>
+            
+            <div class="modal-body">
+                <div id="testmodal" style="padding: 5px 20px;">
+                    <form id="antoform" class="form-horizontal calender" action="{{path('planning_new')}}" role="form" method="post">
+                        {{form_widget(form._token)}}
+                        
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Titre</label>
+                            <div class="col-sm-9">
+                                {{ form_widget(form.titre,{ 'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.titre) }}
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Séance</label>
+                            <div class="col-sm-9">
+                                <select class="form-control"  id="séance" name="séance">
+                                    <option value="Code de la route">Code de la route</option>
+                                    <option value="Conduite">Conduite</option>
+                                </select>
+                            </div>
+                        </div>
+                      
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Créateur</label>
+                            <div class="col-sm-9">
+                                <input  type="text" class="form-control" id="username" name="username" value="{{user.username}}" >
+                            </div>
+                        </div>
+                            
+                        {%if is_granted('ROLE_MONITEUR')%}
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">à:</label>
+                                <div class="col-sm-9">
+
+                                    <select  name="userDest"  id="userDest" class="selectpicker form-control" data-live-search="true">
+                                        {% for dest in destinataires  if dest.id != user.id %} 
+
+                                               <option value="{{dest.id}}">  {{dest.username}} </option>
+
+                                        {% endfor %}
+                                    </select>
+
+                                </div>
+                            </div> 
+                        {%elseif is_granted('ROLE_CANDIDAT')%}
+                            <div hidden="true">
+                                <input  class="form-control" id="userDest" name="userDest" value="{{user.moniteur.id}}" enabled="true">
+                            </div>
+                        {%endif%}
+                        
+                    
+                        <div class="form-group hidden" >
+                            <label class="col-sm-3 control-label">Date début</label>
+                            <div class="col-sm-9">
+                                <input type="datetime" class="form-control" id="startDate" name="startDate">
+                            </div>
+                        </div>
+
+                        <div class="form-group hidden">
+                            <label class="col-sm-3 control-label">Date fin</label>
+                            <div class="col-sm-9">
+                                <input type="datetime" class="form-control" id="endDate" name="endDate">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Fermer</button>
+                            <button type="submit"  class="btn btn-primary antosubmit">Valider</button>
+                            {#<button type="button" class="btn btn-primary antosubmit">Enregistrer</button>#}
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+           
+        </div>
+    </div>
+</div>
+                       
+<div id="CalenderModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h4 class="modal-title" id="myModalLabel2">Modifier planning</h4>
+            </div>
+            <div class="modal-body">
+
+                <div id="testmodal2" style="padding: 5px 20px;">
+                    <form id="antoform2" class="form-horizontal calender" role="form">
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label">Titre</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" id="title2" name="title2">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label">Description</label>
+                          <div class="col-sm-9">
+                            <textarea class="form-control" style="height:55px;" id="descr2" name="descr"></textarea>
+                          </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default antoclose2" data-dismiss="modal">Fermer</button>
+              <button type="button" class="btn btn-primary antosubmit2">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="fc_create" data-toggle="modal" data-target="#CalenderModalNew"></div>
+<div id="fc_edit" data-toggle="modal" data-target="#CalenderModalEdit"></div>
+<!-- /calendar modal -->
+       
+<!-- jQuery -->
+<script src="{{ asset('bundles/gentellela/jquery/dist/jquery.min.js')}}"></script>
+<!-- Bootstrap -->
+<script src="{{ asset('bundles/gentellela/dist/js/bootstrap.min.js')}}"></script>
+<!-- FastClick -->
+<script src="{{ asset('bundles/gentellela/fastclick/lib/fastclick.js')}}"></script>
+<!-- NProgress -->
+<script src="{{ asset('bundles/gentellela/nprogress/nprogress.js')}}"></script>
+<!-- FullCalendar -->
+<script src="{{ asset('bundles/gentellela/min/moment.min.js')}}"></script>
+<script src="{{ asset('bundles/gentellela/fullcalendar/dist/fullcalendar.min.js')}}"></script>
+
+<!-- Custom Theme Scripts -->
+<script src="{{ asset('bundles/gentellela/build/js/custom.min.js')}}"></script>
+
+
+{% endblock %}
+       
+    </div>
+    <!--inner block end here-->
+    <!--copy rights start here-->
+    <div class="copyrights" id="footer">
+        <p>© 2017 Veganet. All Rights Reserved |Dorra Ouni </p>
+    </div>	
+    <!--COPY rights end here-->
+    </div>
+    </div>
+    <!--slider menu-->
+    
+       {{ render(controller('GestionBundle:Default:leftBar')) }}
+       
+    <!--slider menu end here-->
+
+
+    <div class="clearfix"> </div>
+</div>
+<!--slide bar menu end here-->
+<script>
+var toggle = true;
+            
+$(".sidebar-icon").click(function() {                
+  if (toggle)
+  {
+    $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+    $("#menu span").css({"position":"absolute"});
+  }
+  else
+  {
+    $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+    setTimeout(function() {
+      $("#menu span").css({"position":"relative"});
+    }, 400);
+  }               
+                toggle = !toggle;
+            });
+</script>
+<!--scrolling js-->
+<script src="{{ asset('bundles/gestion/js/jquery.nicescroll.js')}}"></script>
+<script src="{{ asset('bundles/gestion/js/scripts.js')}}"></script>
+<!--//scrolling js-->
+{#<script src="{{ asset('bundles/gestion/js/bootstrap.js')}}"> </script>#}
+
+<!-- mother grid end here-->
+<style>
+    #footer {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 1rem;
+        text-align: center;
+      }
+</style>
+</body>
+
+</html>                     
+
+
+
+

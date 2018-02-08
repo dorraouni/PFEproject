@@ -1,0 +1,77 @@
+ {% trans_default_domain 'FOSUserBundle' %}
+<div class="signup-page-main">
+     <div class="signup-main">  	
+    	 <div class="signup-head">
+             <h1><B>Inscription</B></h1>
+			</div>
+			<div class="signup-block">
+                            <form action="{{path('fos_user_registration_register')}}"  method="post">
+                                {{ form_widget(form._token) }}
+                                
+                        
+                                {{form_widget(form.nom,{ 'attr': {'class': 'form-control','placeholder':'Nom '} }) }}
+                                {{ form_errors(form.nom) }}
+                                
+                               
+                              
+                                {{form_widget(form.prenom,{ 'attr': {'class': 'form-control','placeholder':'Prénom '} }) }}
+                                {{ form_errors(form.prenom) }}
+                                
+                                {{form_widget(form.username,{ 'attr': {'class': 'form-control','placeholder':'Nom utilisateur'} }) }}
+                                {{ form_errors(form.username) }}
+                            
+                                {{form_widget(form.email,{ 'attr': {'class': 'form-control','placeholder':'Email'}}) }}
+                                {{ form_errors(form.email) }}
+                                <br/>
+                                {{ form_widget (form.plainPassword.first,{ 'attr': {'class': 'form-control','placeholder':'Mot de passe'}}) }}
+                                {{ form_errors(form.plainPassword.first) }}
+
+                                {{ form_widget (form.plainPassword.second,{ 'attr': {'class': 'form-control','placeholder':'Confirmer mot de passe'}}) }}
+                                {{ form_errors(form.plainPassword.second) }}
+                                                                
+                                {{form_widget(form.telephone,{ 'attr': {'class': 'form-control','placeholder':'Téléphone'}}) }}
+                                {{ form_errors(form.telephone) }}
+                                
+                                 {{form_widget(form.adresse,{ 'attr': {'class': 'form-control','placeholder':'Adresse '} }) }}
+                                {{ form_errors(form.adresse) }}
+                                
+
+                               <input type="text" name="birthdate" required="true" value="24-10-1994" />
+   
+
+                                    <script type="text/javascript">
+                                    $(function() {
+                                        $('input[name="birthdate"]').daterangepicker({
+                                            locale: {
+                                                format : 'DD-MM-YYYY',
+                                            },
+                                            singleDatePicker: true,
+                                            showDropdowns: true
+                                         });
+                                    });
+                                           </script>
+
+
+
+					<div class="forgot-top-grids">
+                                            <div class="forgot-grid">
+                                                <ul>
+                                                    <li>
+                                                        <input type="checkbox" id="brand1" value="">
+                                                        <label for="brand1"><span></span>J'accepte les conditions d'utilisation du site</label>
+                                                    </li>
+                                                </ul>
+                                            </div>
+						
+                                            <div class="clearfix"> </div>
+					</div>
+                                        
+                                         <div>
+                                            <input type="submit" value="{{ 'registration.submit'|trans }}" />
+                                         </div>
+				</form>
+				
+			</div>
+    </div>
+</div>
+

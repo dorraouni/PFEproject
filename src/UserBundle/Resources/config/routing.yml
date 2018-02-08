@@ -1,0 +1,13 @@
+user_list:
+    path:   /listUser
+    defaults:   { _controller: UserBundle:ListUser:listUser } 
+    
+    
+    
+delete_route_name:
+    path:   /delete/{id}
+    defaults:   { _controller: UserBundle:ListUser:delete }
+    
+details_route_name:
+    path:   /details/{id}
+    defaults:   { _controller: UserBundle:ListUser:detail }

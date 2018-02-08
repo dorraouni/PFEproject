@@ -1,0 +1,89 @@
+{% extends 'default/index.html.twig' %}
+
+{% block body %}
+        	 
+
+    {#<h1>Message</h1>
+                 
+			
+
+    <table>
+        
+        <tbody>
+            <tr>
+                <th>DE:</th>
+                <td>{{ message.exp }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ message.date|date('d-m-Y H:i:s') }}</td>
+            </tr>
+            
+            <tr>
+                <th>Objet</th>
+                <td>{{ message.objet }}</td>
+            </tr>
+            <tr>
+                <th>Contenu</th>
+                <td>{{ message.contenu }}</td>
+            </tr>
+        </tbody>
+    </table>
+                        
+
+    <ul>
+        <li>
+            <a href="{{ path('message_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('message_edit', { 'id': message.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>#}
+
+
+
+
+<div class="box-body no-padding">
+    <div class="mailbox-read-info">
+        <h2>Objet :{{message.objet}}</h2>
+        <h3>De: {{  message.exp}}</h3>
+        <hr>
+        <h3> <span class="mailbox-read-time pull-right">{{ message.date|date('H:i:s')}}</span></h3>
+    </div>
+
+
+    <!-- /.mailbox-controls -->
+    <h4>
+        <div class="mailbox-read-message">
+            <p>Hello {{message.dest}},</p>
+
+            <p>{{message.contenu}}</p>
+        </div>
+    </h4>
+    <!-- /.mailbox-read-message -->
+</div>
+           
+        
+{#{% if file.getMessage()==message.id %}
+    <img src="{{ asset('bundles/FilesMessages/') }}" />
+{% else %}
+    Pas d'image chargée !
+{% endif %}#}
+                
+    {% for file in files %}
+        <div>
+            <p></p>
+            <img class="alignleft" src="{{ asset('bundles/FilesMessages/'~message.id~'/'~file.nom  | raw | convert_encoding('UTF-8', 'ISO-8859-1') ) }}" alt="" width="290" height="275" />                  
+             
+        </div>
+    {%endfor%}
+    <br/>
+        <ul>
+            <a href="{{ path('message_index') }}"> <button type="submit" class="btn btn-success">Retourner à la liste des messages</button></a>
+        </ul>
+    {% endblock %}

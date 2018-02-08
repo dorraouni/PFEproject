@@ -1,0 +1,118 @@
+{% extends "default/index.html.twig" %}
+{%block body %}
+<div class="cols-grids panel-widget">      
+<div class="content-wrapper" style="margin-left: 0">
+<!-- Content Header (Page header) -->
+
+    <h1>
+        Tables des utilisateurs
+    </h1>
+<section class="content">
+      
+    <div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                
+                <h3 class="box-title"><b>Liste des moniteurs</b></h3>
+                <hr>
+            </div>
+            
+            <div class="box-body table-responsive no-padding">
+                
+              <table class="table table-hover">
+                  <thead>
+                      <tr>
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>Adresse mail</th>
+                            <th>Telephone</th>
+
+                        </tr>
+                  </thead>
+                  <tbody>
+                    {% for user in monitors  %}
+                        <tr>
+                            <td>{{user.id}}</td>
+                            <td>{{ user.nom }}</td>
+                            <td>{{ user.prenom }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.telephone}}</td>
+                            <td>
+                                <a href="{{ path('details_route_name', { 'id': user.id }) }}"> <button type="submit" class="btn btn-success">détails</button></a>
+                            </td>
+                            <td>
+                                <a href="{{ path('facture_generate', { 'id': user.id }) }}"> <button type="submit" class="btn btn-primary">Générer facture</button></a>
+                            </td>
+{#                            <td><span class="myButton2 btn btn-success" href="{{ path('details_route_name', {'id': user.id }) }}">détails</span></td>#}
+                            <td>
+                                <a class="myButton2 btn btn-danger" href="{{ path('delete_route_name', {'id': user.id }) }}">Supprimer</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+                
+              </table>
+                  <center>
+                <div class="navigation">
+                    {{ knp_pagination_render(monitors) }}
+                </div>
+                </center>
+                  
+                <br/>
+            <div class="box-header">
+                <h3 class="box-title"><b>Liste des Candidats</b></h3>
+
+                <hr>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Adresse mail</th>
+                        <th>Telephone</th>  
+
+                      </tr>
+                </thead>
+                <tbody>
+                    {% for user in candidats  %}
+                        <tr>
+                            <td> {{user.id}}</td>
+                            <td>{{ user.nom }}</td>
+                            <td>{{ user.prenom }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.telephone}}</td>
+                            <td>
+                                <a href="{{ path('details_route_name', { 'id': user.id }) }}"> <button type="submit" class="btn btn-success">détails</button></a>
+                            </td>
+                            <td>
+                                <a href="{{ path('facture_generate', { 'id': user.id }) }}"> <button type="submit" class="btn btn-primary">Générer facture</button></a>
+                            </td>
+                            <td>
+                                <a class="myButton2 btn btn-danger" href="{{ path('delete_route_name', {'id': user.id }) }}">Supprimer</a>
+                            </td>
+
+                         </tr>
+                    {% endfor %}
+                </tbody>
+                
+            </table>
+                <center>
+                <div class="navigation">
+                    {{ knp_pagination_render(candidats) }}
+                </div>
+                </center>
+                  
+          
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+</div>
+</div>
+                   
+{%endblock%}

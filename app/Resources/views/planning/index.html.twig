@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Plannings list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Startdate</th>
+                <th>Enddate</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for planning in plannings %}
+            <tr>
+                <td><a href="{{ path('planning_show', { 'id': planning.id }) }}">{{ planning.id }}</a></td>
+                <td>{% if planning.startDate %}{{ planning.startDate|date('H:i:s') }}{% endif %}</td>
+                <td>{% if planning.endDate %}{{ planning.endDate|date('H:i:s') }}{% endif %}</td>
+{#                <td>{% if planning.date %}{{ planning.date|date('Y-m-d') }}{% endif %}</td>#}
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('planning_show', { 'id': planning.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('planning_edit', { 'id': planning.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('planning_new') }}">Create a new planning</a>
+        </li>
+    </ul>
+{% endblock %}

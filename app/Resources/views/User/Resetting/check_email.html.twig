@@ -1,0 +1,23 @@
+{% extends "User/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    
+    <div class="login-page">
+     <div class="login-main"> 
+    <div class="login-head">
+             <h1><B>vérifier votre email</b></h1>
+    </div>
+    <div class="login-block">
+            <p>
+
+                <b><i>{{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}</i></b>
+
+            </p>
+    </div>
+     </div>
+    </div>
+{% endblock %}
+
+
